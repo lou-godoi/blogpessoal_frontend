@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-900 relative overflow-hidden">
@@ -70,12 +72,12 @@ function Login() {
           </div>
 
           {/* Link de Cadastro */}
-          <p className="text-center text-sm text-emerald-200/70">
-            Ainda não tem a chave?{' '}
-            <span className="text-pink-300 hover:text-pink-200 hover:underline cursor-pointer transition-colors font-medium">
-              Criar um feitiço
-            </span>
-          </p>
+        <p className="text-emerald-200/70 text-center">
+         Ainda não tem a chave?{' '}
+        <Link to="/cadastro" className="text-pink-500 font-bold hover:underline">
+            Criar um feitiço
+        </Link>
+            </p>
         </form>
       </div>
     </div>
