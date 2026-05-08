@@ -35,9 +35,9 @@ function Home() {
           <div className="flex justify-center relative">
             <div className="absolute inset-0 bg-emerald-500/20 blur-[100px] rounded-full"></div>
             <img
-              src="https://i.imgur.com/VpwApCU.png"
+              src="src\assets\scribe.png"
               alt="Imagem Página Home"
-              className="relative z-10 w-2/3 lg:w-full drop-shadow-[0_0_35px_rgba(167,139,250,0.5)]"
+              className="relative z-10 w-2/3 lg:w-2/2 drop-shadow-[0_0_35px_rgba(167,139,250,0.5)]"
             />
           </div>
 
