@@ -56,7 +56,7 @@ function CardPostagem({ postagem }: CardPostagensProps) {
                     className='w-full py-3 px-4 flex items-center justify-center font-bold rounded-2xl text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-teal-500 hover:to-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.3)] transition-all duration-300 transform hover:-translate-y-1'>
                     Editar
                 </Link>
-                <Link to={`/deletarPostagem/${postagem.id}`} 
+                <Link to={`/deletarpostagem/${postagem.id}`}
                     className='w-full py-3 px-4 flex items-center justify-center font-bold rounded-2xl text-white bg-gradient-to-r from-rose-800 to-red-950 hover:from-rose-600 hover:to-red-800 shadow-[0_0_15px_rgba(225,29,72,0.3)] transition-all duration-300 transform hover:-translate-y-1'>
                     Deletar
                 </Link>
