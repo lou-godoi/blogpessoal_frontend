@@ -1,11 +1,14 @@
+import ListaPostagens from "../../components/postagem/listapostagens/ListaPostagens";
+import ModalPostagem from "../../components/postagem/modalpostagem/ModalPostagem";
+
 function Home() {
   return (
+    <>
     <div className="min-h-screen bg-slate-900 relative overflow-hidden flex items-center justify-center">
       
-      {/* Imagem de Fundo (Mesma do Jardim Encantado) */}
+      {/* Imagem de Fundo*/}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 mix-blend-screen"
-        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2584&auto=format&fit=crop')" }}
       ></div>
       
       {/* Gradiente Mágico */}
@@ -25,9 +28,7 @@ function Home() {
             </p>
 
             <div className="flex gap-4">
-              <button className="rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-pink-600 hover:to-purple-600 text-white font-bold py-3 px-8 shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] transition-all duration-500 transform hover:-translate-y-1">
-                Nova Postagem
-              </button>
+            <ModalPostagem />
             </div>
           </div>
 
@@ -37,13 +38,16 @@ function Home() {
             <img
               src="src\assets\scribe.png"
               alt="Imagem Página Home"
-              className="relative z-10 w-2/3 lg:w-2/2 drop-shadow-[0_0_35px_rgba(167,139,250,0.5)]"
+              className="relative z-10 w-2/3 lg:w-2/3 drop-shadow-[0_0_35px_rgba(167,139,250,0.5)]"
             />
           </div>
-
         </div>
       </div>
     </div>
+
+     <ListaPostagens />
+
+     </>
   );
 }
 
