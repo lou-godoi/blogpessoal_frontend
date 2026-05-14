@@ -59,7 +59,6 @@ function ListaPostagens() {
           Mural de Postagens
         </h1>
 
-        {/* Loader Centralizado com a Cor do Tema */}
         {isLoading && (
           <div className="flex flex-col items-center justify-center my-20">
             <SyncLoader

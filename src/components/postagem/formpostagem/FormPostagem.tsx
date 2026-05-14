@@ -129,16 +129,16 @@ function FormPostagem() {
   return (
     <div className="min-h-screen bg-slate-900 relative overflow-hidden flex items-center justify-center py-10">
       
-      {/* 1. Imagem de Fundo (Exatamente como na sua Home) */}
+      {/* 1. Imagem de Fundo */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 mix-blend-screen"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2584&auto=format&fit=crop')" }}
       ></div>
       
-      {/* 2. Gradiente Mágico (O que dá o tom roxo/indigo) */}
+      {/* 2. Gradiente */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-900/80 to-emerald-900/90 mix-blend-multiply pointer-events-none"></div>
 
-      {/* 3. Conteúdo Principal (O Form) */}
+      {/* 3. Form */}
       <div className="relative z-10 w-full max-w-xl px-4">
           <div className="bg-stone-950/80 backdrop-blur-sm border border-emerald-500/20 rounded-[2rem] p-8 shadow-2xl">
               
@@ -147,7 +147,6 @@ function FormPostagem() {
               </h1>
 
               <form onSubmit={gerarNovaPostagem} className="flex flex-col gap-4">
-                  {/* ... seus inputs continuam aqui ... */}
                   <div className="flex flex-col gap-1">
                       <label htmlFor="titulo" className="text-emerald-400 font-bold uppercase tracking-widest text-[10px] ml-2">Título da Postagem</label>
                       <input
