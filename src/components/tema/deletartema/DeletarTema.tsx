@@ -4,8 +4,10 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { ClipLoader } from "react-spinners";
 import type Tema from "../../../models/Tema";
 import { buscar, deletar } from "../../../services/Service";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function DeletarTema() {
+  
   /* --- ESTADOS E HOOKS --- */
   const [tema, setTema] = useState<Tema>({} as Tema);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -18,7 +20,6 @@ function DeletarTema() {
 
   /* --- FUNÇÕES DE LÓGICA --- */
 
-  // Busca o tema específico para mostrar na tela antes de apagar
   async function buscarPorId(id: string) {
     try {
       await buscar(`/temas/${id}`, setTema, {
@@ -33,22 +34,20 @@ function DeletarTema() {
     }
   }
 
-  // Verifica se o usuário está logado
+  // Alerta de login via Toast
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado");
+      ToastAlerta("Você precisa estar logado", "info"); 
       navigate("/login");
     }
   }, [token]);
 
-  // Dispara a busca quando o ID da URL mudar
   useEffect(() => {
     if (id !== undefined) {
       buscarPorId(id);
     }
   }, [id]);
 
-  // Função que realmente apaga o tema
   async function deletarTema() {
     setIsLoading(true);
 
@@ -58,12 +57,14 @@ function DeletarTema() {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Tema apagado com sucesso");
+      // Toast de Sucesso!
+      ToastAlerta("Tema apagado com sucesso", "sucesso");
     } catch (error: any) {
       if (error.toString().includes("401")) {
         handleLogout();
       } else {
-        alert("Erro ao apagar o Tema");
+        // Toast de Erro!
+        ToastAlerta("Erro ao apagar o Tema", "erro");
       }
     }
 
@@ -78,7 +79,8 @@ function DeletarTema() {
   /* --- VISUAL (JSX) --- */
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-slate-950 flex items-center justify-center py-12">
-      {/* Background Místico (Igual ao seu ListaTemas) */}
+      
+      {/* Background Místico */}
       <div
         className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-screen"
         style={{
@@ -124,7 +126,7 @@ function DeletarTema() {
                 onClick={deletarTema}
               >
                 {isLoading ? (
-                  <ClipLoader color="#10b981" size={16} />
+                  <ClipLoader color="#ffffff" size={16} />
                 ) : (
                   "Sim, apagar"
                 )}

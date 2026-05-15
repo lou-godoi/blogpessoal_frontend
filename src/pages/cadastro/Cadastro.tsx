@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import type Usuario from "../../models/Usuario"
 import { cadastrarUsuario } from "../../services/Service"
 import { ClipLoader } from "react-spinners"
+import { ToastAlerta } from "../../utils/ToastAlerta"
 
 function Cadastro() {
   const navigate = useNavigate()
@@ -41,17 +42,21 @@ function Cadastro() {
   async function cadastrarNovoUsuario(e: FormEvent<HTMLFormElement>){
     e.preventDefault()
 
+    // Validação de senha
     if(confirmarSenha === usuario.senha && usuario.senha.length >= 8){
       setIsLoading(true)
 
       try{
         await cadastrarUsuario(`/usuarios/cadastrar`, usuario, setUsuario)
-        alert('Usuário cadastrado com sucesso!')
+        // TOAST DE SUCESSO:
+        ToastAlerta('Usuário cadastrado com sucesso!', 'sucesso')
       }catch(error){
-        alert('Erro ao cadastrar o usuário!')
+        // TOAST DE ERRO NO SERVIDOR:
+        ToastAlerta('Erro ao cadastrar o usuário!', 'erro')
       }
     }else{
-      alert('Dados do usuário inconsistentes! Verifique as informações do cadastro.')
+      // TOAST DE ERRO DE VALIDAÇÃO:
+      ToastAlerta('Dados do usuário inconsistentes! Verifique se a senha tem 8 caracteres e se a confirmação está igual.', 'erro')
       setUsuario({...usuario, senha: ''})
       setConfirmarSenha('')
     }
@@ -67,10 +72,10 @@ function Cadastro() {
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2584&auto=format&fit=crop')" }}
       ></div>
 
-      {/* Gradiente Mágico */}
+      {/* Gradiente */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-900/80 to-emerald-900/90 mix-blend-multiply pointer-events-none"></div>
 
-      {/* Card de Cadastro (O "Grimório" ou Portal) */}
+      {/* Card de Cadastro */}
       <div className="relative z-10 w-full max-w-2xl p-10 mx-4 bg-stone-900/40 backdrop-blur-xl border border-emerald-400/20 rounded-[2.5rem] shadow-[0_0_50px_-12px_rgba(16,185,129,0.5)]">
 
         <div className="text-center mb-8">

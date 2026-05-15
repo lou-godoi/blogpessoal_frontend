@@ -4,10 +4,11 @@ import { ClipLoader } from 'react-spinners';
 import { AuthContext } from '../../../contexts/AuthContext';
 import type Tema from '../../../models/Tema';
 import { atualizar, buscar, cadastrar } from '../../../services/Service';
+import { ToastAlerta } from '../../../utils/ToastAlerta';
 
 function FormTema() {
   const navigate = useNavigate();
-  const { id } = useParams<{ id: string }>(); // Pega o ID da URL se for edição
+  const { id } = useParams<{ id: string }>();
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
@@ -22,7 +23,7 @@ function FormTema() {
 
   useEffect(() => {
     if (token === '') {
-      alert('Você precisa estar logado');
+      ToastAlerta('Você precisa estar logado', 'info');
       navigate('/login');
     }
   }, [token]);
@@ -53,18 +54,18 @@ function FormTema() {
         await atualizar(`/temas`, tema, setTema, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        alert('Tema atualizado com sucesso');
+        ToastAlerta('Tema atualizado com sucesso', 'sucesso');
       } else {
         await cadastrar(`/temas`, tema, setTema, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        alert('Tema cadastrado com sucesso');
+        ToastAlerta('Tema cadastrado com sucesso', 'sucesso');
       }
     } catch (error: any) {
       if (error.toString().includes('401')) {
         handleLogout();
       } else {
-        alert(id !== undefined ? 'Erro ao atualizar o Tema' : 'Erro ao cadastrar o Tema');
+        ToastAlerta(id !== undefined ? 'Erro ao atualizar o Tema' : 'Erro ao cadastrar o Tema', 'erro');
       }
     } finally {
       setIsLoading(false);
@@ -74,7 +75,7 @@ function FormTema() {
 
   return (
     <div className="min-h-screen w-full relative overflow-hidden bg-slate-950 flex items-center justify-center py-12">
-      {/* Background Místico */}
+      {/* Background*/}
       <div 
         className="fixed inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-screen"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2584&auto=format&fit=crop')" }}

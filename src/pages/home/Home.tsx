@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import ListaPostagens from "../../components/postagem/listapostagens/ListaPostagens";
 import ModalPostagem from "../../components/postagem/modalpostagem/ModalPostagem";
+import { AuthContext } from "../../contexts/AuthContext";
 
 function Home() {
+  const { usuario } = useContext(AuthContext);
+
   return (
     <>
     <div className="min-h-screen bg-slate-900 relative overflow-hidden flex items-center justify-center">
@@ -20,11 +24,11 @@ function Home() {
           
           {/* Texto e Boas-vindas */}
           <div className="flex flex-col gap-6 items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-pink-300 drop-shadow-lg">
-              Seja Bem Vinde!
+            <h2 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-pink-400 drop-shadow-lg">
+              Saudações, {usuario.nome}!
             </h2>
             <p className="text-2xl text-emerald-100/80 font-medium">
-              Expresse aqui seus pensamentos e opiniões no seu refúgio digital.
+              O que traz de novo no seu refúgio digital?
             </p>
 
             <div className="flex gap-4">

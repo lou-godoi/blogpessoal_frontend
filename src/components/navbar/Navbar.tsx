@@ -1,46 +1,49 @@
+import { useContext, type ReactNode } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-import { useContext } from "react";
-
 import { AuthContext } from "../../contexts/AuthContext";
+import { ToastAlerta } from "../../utils/ToastAlerta";
 
 function Navbar() {
-  const navigate = useNavigate();
-  const { handleLogout } = useContext(AuthContext);
 
-  function logout() {
-    handleLogout();
-    alert("O Usuário foi desconectado com sucesso!");
-    navigate("/");
-  }
+    const navigate = useNavigate();
 
-  return (
-    <>
-      <div className="w-full flex justify-center py-4 bg-purple-900 text-teal-400 relative z-50">
-        <div className="container flex justify-between text-lg mx-8">
-          <Link to="/home" className="text-2xl font-bold">
-            Blog Pessoal
-          </Link>
+    const { usuario, handleLogout } = useContext(AuthContext)
 
-          <div className="flex gap-4">
-            <Link to="/postagens" className="hover:underline">
-              Postagens
-            </Link>
-            <Link to="/temas" className="hover:underline">
-              Temas
-            </Link>
-            <Link to="/cadastrartema" className="hover:underline">
-              Cadastrar tema
-            </Link>
-            Perfil
-            <Link to="" onClick={logout} className="hover:underline">
-              Sair
-            </Link>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+    function logout() {
+        handleLogout()
+        ToastAlerta('O viajante foi desconectado com sucesso. Até mais! 👋', 'info')
+        navigate('/')
+    }
+
+    let component: ReactNode
+
+    if (usuario.token !== "") {
+
+        component = (
+
+            <div className='w-full flex justify-center py-3 bg-purple-900 text-teal-400 relative z-50'>
+
+                <div className="container flex justify-between text-lg mx-8">
+                    <Link to='/home' className="text-2xl font-bold">Blog Pessoal</Link>
+
+                    <div className='flex gap-4'>
+                        <Link to='/postagens' className='hover:underline'>Postagens</Link>
+                        <Link to='/temas' className='hover:underline'>Temas</Link>
+                        <Link to='/cadastrartema' className='hover:underline'>Cadastrar tema</Link>
+                        <Link to='/perfil' className='hover:underline'>Perfil</Link>
+                        <Link to='' onClick={logout} className='hover:underline'>Sair</Link>
+                    </div>
+                </div>
+            </div>
+
+        )
+    }
+
+    return (
+        <>
+            { component }
+        </>
+    )
 }
 
-export default Navbar;
+export default Navbar

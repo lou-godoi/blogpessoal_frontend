@@ -4,6 +4,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import { ClipLoader } from "react-spinners";
 import type Postagem from "../../../models/Postagem";
 import { buscar, deletar } from "../../../services/Service";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function DeletarPostagem() {
 
@@ -18,7 +19,6 @@ function DeletarPostagem() {
   const token = usuario.token;
 
   /* --- FUNÇÕES DE LÓGICA --- */
-  // Busca a postagem específica para mostrar na tela antes de apagar
   async function buscarPorId(id: string) {
     try {
       await buscar(`/postagens/${id}`, setPostagem, {
@@ -33,22 +33,20 @@ function DeletarPostagem() {
     }
   }
 
-  // Verifica se o usuário está logado
+  // Verifica se o usuário está logado usando toast
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado");
+      ToastAlerta("Você precisa estar logado", "info"); 
       navigate("/login");
     }
   }, [token]);
 
-  // Dispara a busca quando o ID da URL mudar
   useEffect(() => {
     if (id !== undefined) {
       buscarPorId(id);
     }
   }, [id]);
 
-  // Função que apaga a postagem
   async function deletarPostagem() {
     setIsLoading(true);
 
@@ -58,12 +56,14 @@ function DeletarPostagem() {
           Authorization: `Bearer ${token}`,
         },
       });
-      alert("Postagem apagada com sucesso");
+      // Notificação de sucesso
+      ToastAlerta("Postagem apagada com sucesso", "sucesso");
     } catch (error: any) {
       if (error.toString().includes("401")) {
         handleLogout();
       } else {
-        alert("Erro ao apagar a Postagem");
+        // Notificação de erro
+        ToastAlerta("Erro ao apagar a Postagem", "erro");
       }
     }
 
@@ -127,7 +127,7 @@ function DeletarPostagem() {
                 onClick={deletarPostagem}
               >
                 {isLoading ? (
-                  <ClipLoader color="#10b981" size={16} />
+                  <ClipLoader color="#ffffff" size={16} />
                 ) : (
                   "Sim, apagar"
                 )}

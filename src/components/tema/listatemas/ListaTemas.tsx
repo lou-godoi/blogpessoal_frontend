@@ -4,7 +4,8 @@ import { AuthContext } from "../../../contexts/AuthContext";
 import type Tema from "../../../models/Tema";
 import { buscar } from "../../../services/Service";
 import CardTema from "../cardtema/CardTema";
-import { SyncLoader } from "react-spinners"; // Import do loader conforme a foto 1
+import { SyncLoader } from "react-spinners";
+import { ToastAlerta } from "../../../utils/ToastAlerta";
 
 function ListaTemas() {
   const navigate = useNavigate();
@@ -15,14 +16,14 @@ function ListaTemas() {
   const { usuario, handleLogout } = useContext(AuthContext);
   const token = usuario.token;
 
-useEffect(() => {
+  useEffect(() => {
     if (token === '') {
-        alert('Sua sessão expirou ou você não está logado.');
-        navigate('/login');
+      ToastAlerta('Sua sessão expirou ou você não está logado.', 'info');
+      navigate('/login');
     } else {
-        buscarTemas();
+      buscarTemas();
     }
-}, [token]); // Ele só vai rodar quando o token mudar ou o componente abrir
+  }, [token]);
 
   async function buscarTemas() {
     try {
@@ -56,21 +57,21 @@ useEffect(() => {
             </h2>
           </div>
 
-          {/* 1. Loader */}
+          {/* Loader */}
           {isLoading && (
             <div className="flex justify-center w-full my-8">
                <SyncLoader color="#10b981" size={20} />
             </div>
           )}
 
-          {/* 2. Mensagem de Lista Vazia */}
+          {/* Mensagem de Lista Vazia */}
           {(!isLoading && temas.length === 0) && (
             <span className="text-3xl text-center my-8 font-bold text-emerald-200/50 italic">
               Nenhum Tema foi encontrado!
             </span>
           )}
 
-          {/* 3. O Grid com o .map() */}
+          {/* Grid com o .map() */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {temas.map((tema) => (
               <CardTema key={tema.id} tema={tema} />

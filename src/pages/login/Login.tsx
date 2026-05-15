@@ -32,7 +32,7 @@ function Login() {
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-slate-900 relative overflow-hidden">
-            {/* Imagem de Fundo (Floresta/Jardim) com Efeito de Crepúsculo */}
+            {/* Imagem de Fundo*/}
             <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-50 mix-blend-screen"
                 style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2584&auto=format&fit=crop')" }}
@@ -88,7 +88,7 @@ function Login() {
                         />
                     </div>
 
-                    {/* Botão Mágico */}
+                    {/* Botão */}
                     <button
                         type="submit"
                         className="mt-4 w-full py-4 px-6 flex justify-center items-center bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-pink-600 hover:to-purple-600 text-white font-bold rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.4)] hover:shadow-[0_0_30px_rgba(236,72,153,0.6)] transition-all duration-500 transform hover:-translate-y-1"

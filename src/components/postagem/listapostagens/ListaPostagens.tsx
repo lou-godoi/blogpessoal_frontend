@@ -16,13 +16,6 @@ function ListaPostagens() {
   const token = usuario.token;
 
   useEffect(() => {
-    if (token === "") {
-      alert("Você precisa estar logado!");
-      navigate("/");
-    }
-  }, [token]);
-
-  useEffect(() => {
     buscarPostagens();
   }, [postagens.length]);
 
