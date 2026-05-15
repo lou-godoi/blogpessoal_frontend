@@ -123,19 +123,7 @@ function FormPostagem() {
   const carregandoTema = tema.id === 0;
 
   return (
-    <div className="min-h-screen bg-slate-950 relative overflow-hidden flex items-center justify-center py-10">
-      
-      {/* 1. Camada de Imagem (Para matar a tela branca) */}
-      <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30 mix-blend-screen pointer-events-none"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2584&auto=format&fit=crop')" }}
-      ></div>
-      
-      {/* 2. Gradiente Místico */}
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-900/60 to-emerald-900/40 mix-blend-multiply pointer-events-none"></div>
-
-      {/* 3. Form */}
-      <div className="relative z-10 w-full max-w-xl px-4">
+         <div className="relative z-10 w-full max-w-xl px-4">
           <div className="bg-stone-900/80 backdrop-blur-md border border-emerald-500/20 rounded-[2rem] p-8 shadow-2xl">
               
               <h1 className="text-2xl md:text-3xl font-black text-center mb-6 text-transparent bg-clip-text bg-gradient-to-r from-emerald-200 to-pink-300 drop-shadow-md uppercase tracking-tighter">
@@ -210,7 +198,6 @@ function FormPostagem() {
               </form>
           </div>
       </div>
-    </div>
   );
 }
 
