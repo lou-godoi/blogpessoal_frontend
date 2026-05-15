@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { SyncLoader } from "react-spinners";
 import { AuthContext } from "../../../contexts/AuthContext";
 import type Postagem from "../../../models/Postagem";
@@ -7,7 +6,6 @@ import { buscar } from "../../../services/Service";
 import CardPostagem from "../cardpostagem/CardPostagem";
 
 function ListaPostagens() {
-  const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [postagens, setPostagens] = useState<Postagem[]>([]);
